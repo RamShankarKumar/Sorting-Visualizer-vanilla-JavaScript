@@ -1,6 +1,6 @@
 class Visualizer{
-    constructor(){
-        this.barContainer = document.querySelector('.bar-container');
+    constructor(container){
+        this.barContainer = document.querySelector(container);
         this.barContainerHeight = this.barContainer.clientHeight;
         this.barContainerWidth = this.barContainer.clientWidth;
         this.submit = document.getElementById('submit');
@@ -8,19 +8,13 @@ class Visualizer{
         console.log(this.barContainerWidth);
     }
 
-    createBar(barContainerWidth, barContainerHeight, userInput=false){
-        if(userInput){
-            let input = document.querySelector('.bar-number')
-            this.count = parseInt(input.value); // storing this variable as object key and value. Here this context is Visualizer object which is created by javascript in case of ES6 class concept.
-            input.value = '';
-        } // we can not keep this if condition down as count variable will not be present in the object.
-            
+    createBar(barContainerWidth, barContainerHeight, count){
         let BarHeightPercentage = 0.85 * barContainerHeight; // 85 percent of barcontainer height
         let BarWidthPercentage = 0.5 * barContainerWidth; // 50% of barcontainer width
-        let barWidth = BarWidthPercentage / this.count;
+        let barWidth = BarWidthPercentage / count;
         let barHeight = BarHeightPercentage;
         let barContainerLeftSpaceWidth = barContainerWidth - BarWidthPercentage; // remaining space 
-        let barMargin = barContainerLeftSpaceWidth / (this.count+1); // margin value of each bar to give gap between bars.
+        let barMargin = barContainerLeftSpaceWidth / (count+1); // margin value of each bar to give gap between bars.
         // console.log('barwidth -> ', barWidth);
         // console.log('barHeight -> ', barHeight);
         // console.log('barMargin -> ',barMargin)
@@ -29,7 +23,7 @@ class Visualizer{
         // console.log('count+1 -> ',this.count+1)
 
         const bars = [];
-        for(let i = 0; i < this.count; i++){
+        for(let i = 0; i < count; i++){
             let div = document.createElement("div");
             div.style.width = `${barWidth}px`;
             div.style.height = `${barHeight}px`;
@@ -47,21 +41,38 @@ class Visualizer{
         }
     }
 
-    getWindowResizeUpdate(){
+    getWindowResizeUpdate(count, isThrottling){
+        console.log('this value inside getwindowresize -> ', this)
         window.addEventListener("resize", function(){
             this.barContainerHeight = this.barContainer.clientHeight;
             this.barContainerWidth = this.barContainer.clientWidth;
-            this.createBar(this.barContainerWidth, this.barContainerHeight) 
+            this.createBar(this.barContainerWidth, this.barContainerHeight, count) 
         }.bind(this));
     }
 
-    getInput(){
-        this.submit.addEventListener('click', function(){
-            this.createBar(this.barContainerWidth, this.barContainerHeight, true);
-        }.bind(this)) // .bind works here because in .bind() we get a brand new function with the context that we pass in it. But in .call() we directly call a function and we get undefined at function place because called function does not return anything and we get undefined. And undefined in not a function so eventlistener don't get executed at that point.
+    getInput(count){
+        this.createBar(this.barContainerWidth, this.barContainerHeight, count, true);
     }  
 }
 
-let visual = new Visualizer();
-visual.getInput();
-visual.getWindowResizeUpdate();
+function main(){
+    let visual1 = new Visualizer('.bar-container1');
+    let visual2 = new Visualizer('.bar-container2');
+
+    let submit = document.getElementById('submit');
+    submit.addEventListener('click', () => {
+        let input = document.querySelector('.bar-number');
+        let count = parseInt(input.value);
+        input.value = '';
+
+        console.log('count -> ',count)
+
+        visual1.getInput(count);
+        visual1.getWindowResizeUpdate(count,false);
+
+        visual2.getInput(count);
+        visual2.getWindowResizeUpdate(count, true);
+    })
+}
+
+main();

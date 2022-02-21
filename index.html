@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorting Visualizer</title>
-    <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-    <input type="number" placeholder="Enter number of bars" class='bar-number'/>
-    <input type="button" value="submit" id='submit'/>
-    <div class="bar-container"></div>
-    <script src="algorithms/main.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sorting Visualizer</title>
+        <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body>
+        <div class="visualizer">
+            <input type="number" placeholder="Enter number of bars" class='bar-number'/>
+            <input type="button" value="submit" id='submit'/>
+            <div class="upperbox childbox">
+                <div class="bar-container1 barcontainer"></div>
+                <div class="counter">
+                    <h5>Resize Event Count</h5>
+                    <div class="resize-count"></div>
+                </div>
+            </div>
+            <div class="lowerbox childbox">
+                <div class="bar-container2 barcontainer"></div>
+                <div class="counter">
+                    <h5>Resize Event Count</h5>
+                    <div class="resize-count"></div>
+                </div>
+            </div>
+        </div>
+        <script src="algorithms/main.js"></script>
+    </body>
 </html>
