@@ -8,7 +8,7 @@ class Visualizer{
         console.log(this.barContainerWidth);
     }
 
-    createBar(barContainerWidth, barContainerHeight, count){
+    createBar(barContainerWidth, barContainerHeight, count, islowercontainer = false){
         let BarHeightPercentage = 0.85 * barContainerHeight; // 85 percent of barcontainer height
         let BarWidthPercentage = 0.5 * barContainerWidth; // 50% of barcontainer width
         let barWidth = BarWidthPercentage / count;
@@ -35,41 +35,55 @@ class Visualizer{
             this.barContainer.removeChild(this.barContainer.firstChild);
         }
 
-        for (const bar of bars){
-            bar.classList.add('bar');
-            this.barContainer.appendChild(bar);
+        if(islowercontainer){
+            for (const bar of bars){
+                bar.classList.add('bar', 'lowerbar');
+                this.barContainer.appendChild(bar);
+            }
+        }
+        else{
+            for (const bar of bars){
+                bar.classList.add('bar', 'upperbar');
+                this.barContainer.appendChild(bar);
+            }
         }
     }
 
-    getWindowResizeUpdate(throttleFeatureDiv, count, isThrottling, timeDelay = 0){
-        if(!isThrottling){
-            let noThrottleresizeCount = 0;
+    getWindowResizeUpdate(debounceFeatureDiv, count, isDebouncing, timeDelay = 0, islowercontainer = false){
+        if(!isDebouncing && !islowercontainer){
+            let noDebounceCount = 0;
             window.addEventListener("resize", function(){
-                noThrottleresizeCount++;
-                throttleFeatureDiv.innerHTML = noThrottleresizeCount;
+                noDebounceCount++;
+                debounceFeatureDiv.innerHTML = noDebounceCount;
                 this.barContainerHeight = this.barContainer.clientHeight;
                 this.barContainerWidth = this.barContainer.clientWidth;
                 this.createBar(this.barContainerWidth, this.barContainerHeight, count) 
             }.bind(this));
         }
         else{
-            let throttleresizeCount = 0;
+            let debounceresizeCount = 0;
             let timer;
             window.addEventListener("resize", function(){
+                // console.log(timer)
                 clearTimeout(timer);
                 timer = setTimeout( () => {
-                    throttleresizeCount++;
-                    throttleFeatureDiv.innerHTML = throttleresizeCount;
+                    debounceresizeCount++;
+                    debounceFeatureDiv.innerHTML = debounceresizeCount;
                     this.barContainerHeight = this.barContainer.clientHeight;
                     this.barContainerWidth = this.barContainer.clientWidth;
-                    this.createBar(this.barContainerWidth, this.barContainerHeight, count) 
+                    this.createBar(this.barContainerWidth, this.barContainerHeight, count, islowercontainer) 
                 }, timeDelay)
             }.bind(this));
         }
     }
 
-    getInput(count){
-        this.createBar(this.barContainerWidth, this.barContainerHeight, count, true);
+    getInput(count, islowercontainer = false){
+        if(islowercontainer){
+            this.createBar(this.barContainerWidth, this.barContainerHeight, count, true);
+        }
+        else{
+            this.createBar(this.barContainerWidth, this.barContainerHeight, count);
+        }
     }  
 }
 
@@ -78,20 +92,24 @@ function main(){
     let visual2 = new Visualizer('.bar-container2');
 
     let submit = document.getElementById('submit');
-    let nothrottleDiv = document.querySelector('.nothrottle');
-    let throttleDiv = document.querySelector('.throttle');
-    submit.addEventListener('click', () => {
+    let noDebounceDiv = document.querySelector('.nodebounce');
+    let DebounceDiv = document.querySelector('.debounce');
+    submit.addEventListener('click', (e) => {
+        e.preventDefault();
         let input = document.querySelector('.bar-number');
         let count = parseInt(input.value);
         input.value = '';
 
-        console.log('count -> ',count)
+        if(count >= 0 && count <= 100){
+            visual1.getInput(count);
+            visual1.getWindowResizeUpdate(noDebounceDiv, count, false);
 
-        visual1.getInput(count);
-        visual1.getWindowResizeUpdate(nothrottleDiv, count, false);
-
-        visual2.getInput(count);
-        visual2.getWindowResizeUpdate(throttleDiv, count, true, 1000);
+            visual2.getInput(count, true);
+            visual2.getWindowResizeUpdate(DebounceDiv, count, true, 70, true);
+        }
+        else{
+            alert('Please input bar number from 0 to 100!')
+        }
     })
 }
 

@@ -9,20 +9,22 @@
     </head>
     <body>
         <div class="visualizer">
-            <input type="number" placeholder="Enter number of bars" class='bar-number'/>
-            <input type="button" value="submit" id='submit'/>
+            <form class="formInput">
+                <input type="number" placeholder="Enter number of bars" class='bar-number'/>
+                <button type="submit" id='submit'>Submit</button>
+            </form>
             <div class="upperbox childbox">
                 <div class="bar-container1 barcontainer"></div>
                 <div class="counter">
-                    <h5>Resize Event Count</h5>
-                    <div class="resize-count nothrottle">0</div>
+                    <h5>Resize Event Count without Debouncing</h5>
+                    <div class="resize-count nodebounce">0</div>
                 </div>
             </div>
             <div class="lowerbox childbox">
                 <div class="bar-container2 barcontainer"></div>
                 <div class="counter">
-                    <h5>Resize Event Count</h5>
-                    <div class="resize-count throttle">0</div>
+                    <h5>Resize Event Count With Debouncing</h5>
+                    <div class="resize-count debounce">0</div>
                 </div>
             </div>
         </div>
