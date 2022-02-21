@@ -41,13 +41,31 @@ class Visualizer{
         }
     }
 
-    getWindowResizeUpdate(count, isThrottling){
-        console.log('this value inside getwindowresize -> ', this)
-        window.addEventListener("resize", function(){
-            this.barContainerHeight = this.barContainer.clientHeight;
-            this.barContainerWidth = this.barContainer.clientWidth;
-            this.createBar(this.barContainerWidth, this.barContainerHeight, count) 
-        }.bind(this));
+    getWindowResizeUpdate(throttleFeatureDiv, count, isThrottling, timeDelay = 0){
+        if(!isThrottling){
+            let noThrottleresizeCount = 0;
+            window.addEventListener("resize", function(){
+                noThrottleresizeCount++;
+                throttleFeatureDiv.innerHTML = noThrottleresizeCount;
+                this.barContainerHeight = this.barContainer.clientHeight;
+                this.barContainerWidth = this.barContainer.clientWidth;
+                this.createBar(this.barContainerWidth, this.barContainerHeight, count) 
+            }.bind(this));
+        }
+        else{
+            let throttleresizeCount = 0;
+            let timer;
+            window.addEventListener("resize", function(){
+                clearTimeout(timer);
+                timer = setTimeout( () => {
+                    throttleresizeCount++;
+                    throttleFeatureDiv.innerHTML = throttleresizeCount;
+                    this.barContainerHeight = this.barContainer.clientHeight;
+                    this.barContainerWidth = this.barContainer.clientWidth;
+                    this.createBar(this.barContainerWidth, this.barContainerHeight, count) 
+                }, timeDelay)
+            }.bind(this));
+        }
     }
 
     getInput(count){
@@ -60,6 +78,8 @@ function main(){
     let visual2 = new Visualizer('.bar-container2');
 
     let submit = document.getElementById('submit');
+    let nothrottleDiv = document.querySelector('.nothrottle');
+    let throttleDiv = document.querySelector('.throttle');
     submit.addEventListener('click', () => {
         let input = document.querySelector('.bar-number');
         let count = parseInt(input.value);
@@ -68,10 +88,10 @@ function main(){
         console.log('count -> ',count)
 
         visual1.getInput(count);
-        visual1.getWindowResizeUpdate(count,false);
+        visual1.getWindowResizeUpdate(nothrottleDiv, count, false);
 
         visual2.getInput(count);
-        visual2.getWindowResizeUpdate(count, true);
+        visual2.getWindowResizeUpdate(throttleDiv, count, true, 1000);
     })
 }
 
