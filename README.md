@@ -1,1 +1,1 @@
-# Sorting-Visualizer-vanilla-JavaScript
+# Sorting-Visualizer-Using-Vanilla-JavaScript
