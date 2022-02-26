@@ -1,5 +1,6 @@
 "use strict";
 import {Bar} from './Bar.js';
+import {BubbleSort} from '../algorithms/BubbleSort.js';
 
 (function(){
     const barContainer = document.querySelector(".bar-container");
@@ -23,6 +24,9 @@ import {Bar} from './Bar.js';
         const bars = visualize.getBarsOnInput(barContainerHeight, barContainerWidth, barCount);
         // console.log('bars -> ', bars);
         visualize.createBars(bars, barContainer);
+
+        const bubbleSort = new BubbleSort();
+        bubbleSort.sortBars();
     }
 
     const generateBarOnResize = () => {
