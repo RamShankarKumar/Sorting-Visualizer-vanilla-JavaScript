@@ -1,5 +1,5 @@
 export class Bar{
-    getRandomBarHeight(barCount, minheight, maxheight){
+    getRandomBarHeight(minheight, maxheight){
         let randomHeight = ((Math.random() * (maxheight - minheight)) + minheight).toFixed(2);
         // console.log('random height -> ', randomHeight);
         return randomHeight;
@@ -21,7 +21,7 @@ export class Bar{
         const bars = [];
         const randomBarHeigth = [];
         for(let i = 0; i < barCount;){
-            let barHeight = this.getRandomBarHeight(barCount, 10, BarHeightPercentage);
+            let barHeight = this.getRandomBarHeight(10, BarHeightPercentage);
             if(!randomBarHeigth.includes(barHeight)){
                 randomBarHeigth.push(barHeight);
                 let div = document.createElement("div");

@@ -25,8 +25,8 @@ import {BubbleSort} from '../algorithms/BubbleSort.js';
         // console.log('bars -> ', bars);
         visualize.createBars(bars, barContainer);
 
-        const bubbleSort = new BubbleSort();
-        bubbleSort.sortBars();
+        const bubbleSort = new BubbleSort(barContainer);
+        bubbleSort.sortBars(1000);
     }
 
     const generateBarOnResize = () => {
