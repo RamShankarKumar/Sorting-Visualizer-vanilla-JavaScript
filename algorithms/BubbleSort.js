@@ -29,6 +29,10 @@ export class BubbleSort{
         let rightBarStyle = {
             x : null,
         }
+
+        leftBar.classList.remove('slideup');
+        rightBar.classList.remove('slideup');
+
         leftBar.classList.remove('color-transition');
         rightBar.classList.remove('color-transition');
 
@@ -57,7 +61,7 @@ export class BubbleSort{
             for(let j = 0; j < this.bars.length - i - 1; j++){
                 this.changeBarColor(this.bars[j], 'pink');
                 this.changeBarColor(this.bars[j+1], 'pink');
-                await this.pause(5); 
+                await this.pause(delay); 
                 const leftBarHeight = parseInt(this.bars[j].clientHeight);
                 const rightBarHeight = parseInt(this.bars[j+1].clientHeight);
                 // To compare value of two blocks
@@ -68,10 +72,10 @@ export class BubbleSort{
                 }
                 this.changeBarColor(this.bars[j], 'green');
                 this.changeBarColor(this.bars[j+1], 'green');
-                await this.pause(5); 
+                await this.pause(delay); 
             }
             this.changeBarColor(this.bars[this.bars.length - i - 1], 'tomato');
-            await this.pause(5);
+            await this.pause(delay);
         }
     }
 }
