@@ -1,0 +1,215 @@
+/* variabl */
+:root{
+    --theme-primary-color: #161B40;
+    --bar-default-color: #ffffff;
+    --menu-color: #ffffff;
+    --menu-hover-background-color: #ffffff;
+    --menu-hover-font-color: #ffffff;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements , which suggests default styling will be removed */
+ul,ol{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/*----------------------------------------------------------------------------------*/
+
+/* navbar css */
+
+.navigation-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: var(--theme-primary-color); */
+    /* color: var(--menu-color); */
+    border: 2px solid green;
+}
+
+.logo{
+    margin-left: 2rem;
+    border: 2px solid red;
+}
+
+.nav-menu ul{
+    display: flex;
+    margin-right: 2rem;
+    font-size: 1.2rem;
+    border: 2px solid red;
+}
+
+.nav-menu ul li{
+    margin: 10px 30px;
+}
+
+/*-----------------------------------------------------------------------*/
+
+
+/*Config Menu*/
+
+.config-menu{
+    display: flex;
+    padding: 0 2rem;
+    border: 2px solid red;
+}
+
+/* input[type='range']{
+    position: relative;
+    appearance: none;
+    -moz-appearance:none;
+    -ms-appearance: none;
+    -webkite-appearance: none;
+    outline: none;
+    cursor: pointer;
+    width: 200px;
+}
+
+input[type='range']::before,
+input[type='range']::after{
+    position: absolute;
+    display: inline-block;
+    top: 0;
+}
+
+input[type='range']::before{
+    content: attr(min);
+    left: 0;
+    transform: translateX(calc(-100% - 5px));
+}
+
+input[type='range']::after{
+    content: attr(max);
+    right: 0;
+    transform: translateX(calc(100% + 5px));
+}
+
+input[type="range"]::-webkit-slider-runnable-track{
+    background: #ffffff;
+    border-radius: 3px;
+    appearance: none;
+    -moz-appearance:none;
+    -ms-appearance: none;
+    -webkite-appearance: none;
+}
+
+input[type='range']::-webkit-slider-thumb{
+    appearance: none;
+    -moz-appearance:none;
+    -ms-appearance: none;
+    -webkite-appearance: none;
+    width: 6px;
+    height: 20px;
+    margin: -7px 0 0 0;
+    border-radius: 12px;
+    margin: 0;
+} */
+
+/*-------------------------------------------------------------------------------------------*/
+
+/*Visualizer container*/
+
+.visualizer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    border: 2px solid red;
+}
+
+.bubble-container{
+    /* background-color: var(--theme-primary-color); */
+    padding-top: 3%;
+    border: 2px solid green;
+}
+
+.bar-number{
+    margin: 0 1rem;
+}
+
+.bar-container{
+    width: 80vw;
+    border: 2px solid blue;
+    height: 50vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.bar{
+    background-color: black;
+    height: 0;
+}
+
+.move-transition{
+    transition: 0.1s transform ease;
+}
+
+.color-transition{
+    transition: 0.3s background-color ease;
+}
+
+.slideup{
+    /* transition: 0.7s height cubic-bezier(.43,.35,.89,1.34); */
+    transition: 1s height cubic-bezier(.54,.35,.06,1.56);
+}
+
+.step-controls{
+    border: 2px solid red;
+    margin-top: 2rem;
+}
+
+
+
+/*----------------------------------------------------------------------------------------*/
+
+
+
+/* Footer */
+footer{
+    border: 2px solid green;
+    margin-top: 2rem;
+}

@@ -47,16 +47,17 @@ export class BubbleSort{
                 this.barContainer.insertBefore(rightBar, leftBar);
                 this.resetBarStyle(leftBar, rightBar);
                 resolve();
-            }, 1000);
+            }, delay);
         });
     }
 
     async sortBars(delay){
+        await this.pause(1000);
         for(let i = 0; i <= this.bars.length - 1; i++){
             for(let j = 0; j < this.bars.length - i - 1; j++){
                 this.changeBarColor(this.bars[j], 'pink');
                 this.changeBarColor(this.bars[j+1], 'pink');
-                await this.pause(delay); 
+                await this.pause(5); 
                 const leftBarHeight = parseInt(this.bars[j].clientHeight);
                 const rightBarHeight = parseInt(this.bars[j+1].clientHeight);
                 // To compare value of two blocks
@@ -67,10 +68,10 @@ export class BubbleSort{
                 }
                 this.changeBarColor(this.bars[j], 'green');
                 this.changeBarColor(this.bars[j+1], 'green');
-                await this.pause(delay); 
+                await this.pause(5); 
             }
             this.changeBarColor(this.bars[this.bars.length - i - 1], 'tomato');
-            await this.pause(delay);
+            await this.pause(5);
         }
     }
 }

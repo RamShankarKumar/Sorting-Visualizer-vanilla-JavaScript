@@ -19,20 +19,20 @@ export class Bar{
         // console.log('count+1 -> ',barCount+1)
 
         const bars = [];
-        const randomBarHeigth = [];
+        const randomBarHeight = [];
         for(let i = 0; i < barCount;){
             let barHeight = this.getRandomBarHeight(10, BarHeightPercentage);
-            if(!randomBarHeigth.includes(barHeight)){
-                randomBarHeigth.push(barHeight);
+            if(!randomBarHeight.includes(barHeight)){
+                randomBarHeight.push(barHeight);
                 let div = document.createElement("div");
                 div.style.width = `${barWidth}px`;
-                div.style.height = `${barHeight}px`;
+                // div.style.height = `${barHeight}px`;
                 div.style.marginLeft = `${barMargin}px`;
                 bars.push(div);
                 i++;
             }
         }
-        return bars;
+        return [bars, randomBarHeight];
     }
 
     resizeBarsOnWindowResize(barContainerWidth, barCount){
@@ -49,14 +49,17 @@ export class Bar{
         }
     }
     
-    createBars(bars, barContainer){
+    createBars(bars, randomBarHeight, barContainer){
         while (barContainer.firstChild) {
             barContainer.removeChild(barContainer.firstChild);
         }
 
-        for (const bar of bars){
-            bar.classList.add('bar');
+        for (const [index, bar] of bars.entries()){
+            bar.classList.add('bar', 'slideup');
             barContainer.appendChild(bar);
+            requestAnimationFrame(() => {
+                bar.style.height = `${randomBarHeight[index]}px`;
+            })
         }
     }
 }

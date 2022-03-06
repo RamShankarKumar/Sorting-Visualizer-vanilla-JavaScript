@@ -31,11 +31,11 @@ html:focus-within {
 }
 
 /* Set core body defaults */
-/* body {
+body {
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
-} */
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -46,37 +46,4 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
-}
-
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.bar-number{
-    margin: 0 1rem;
-}
-
-.bar-container{
-    width: 80vw;
-    border: 2px solid red;
-    margin-top: 1rem;
-    height: 50vh;
-    display: flex;
-    align-items: flex-end;
-}
-
-.bar{
-    background-color: green;
-}
-
-.move-transition{
-    transition: 1s transform ease;
-}
-
-.color-transition{
-    background-color: green;
-    transition: 0.5s background-color ease;
 }
