@@ -45,7 +45,7 @@ import {Bar} from './Bar.js';
     let visualizerSpeed = speeds[speedRangeInput.value];
     speedRangeInput.addEventListener('input', () => {
         visualizerSpeed = speeds[speedRangeInput.value];
-        console.log('visualizerSpeed -> ', visualizerSpeed);
+        // console.log('visualizerSpeed -> ', visualizerSpeed);
     })
     // --------------------------------------------------------------------------------------------------
 
@@ -62,7 +62,8 @@ import {Bar} from './Bar.js';
         barContainerWidth = barContainer.clientWidth;
     }
 
-    const generateBarOnInput = () => {
+    const generateBarOnInput = async () => {
+        document.getElementById('play-pause').innerHTML = 'Play';
         // barCount = parseInt(barInput.value);
         barCount = parseInt(barRangeInput.value)
         // console.log('Bar Count        -> ', barCount)
@@ -72,6 +73,11 @@ import {Bar} from './Bar.js';
         const [bars,randomBarHeight] = visualize.getBarsOnInput(barContainerHeight, barContainerWidth, barCount);
         visualize.createBars(bars, randomBarHeight, barContainer);
         const bubbleSort = new BubbleSort(barContainer);
+
+        // Here we are putting a promise return because with the help of long debugging session, I found that browser is keep waiting for the repaint of the created bar and as soon as it gets the promise wait, in the mean time it paints the browser. Our first promise is being called in BubbleSort.js file. So to paint the created bar as soon as possible, we put the promise return here only.
+        // One more reason to put this here as, as soons as we get the bars painted, we can remove the slideup transition from all bars at once in the BubbleSort.js file. This will help us in making smooth color-transition as there will only be color transition at that point of time.
+        await bubbleSort.pause(1000);
+
         bubbleSort.sortBars(visualizerSpeed);
     }
 
@@ -79,8 +85,6 @@ import {Bar} from './Bar.js';
         getContainerSize();
         const visualize = new Bar();
         visualize.resizeBarsOnWindowResize(barContainerWidth, barCount);
-        const bubbleSort = new BubbleSort(barContainer);
-        bubbleSort.sortBars(visualizerSpeed);
     }
 
     generateBarOnInput();

@@ -282,11 +282,11 @@ button{
 }
 
 .move-transition{
-    transition: 1s transform ease;
+    transition: 0.7s transform ease;
 }
 
 .color-transition{
-    transition: 0.5s background-color ease;
+    transition: 1s background-color ease;
 }
 
 .slideup{

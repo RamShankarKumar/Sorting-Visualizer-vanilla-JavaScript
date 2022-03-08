@@ -13,10 +13,10 @@ export class BubbleSort{
 
     pauser() {
         return new Promise(resolve => {
-            console.log('this inside executor function ->  ',this)
+            // console.log('this inside executor function ->  ',this)
 
             let playbuttonclick = function () {
-                console.log('this inside playbuttonlcick ->  ', this)
+                // console.log('this inside playbuttonlcick ->  ', this)
                 document.getElementById("next-step").disabled = true;
                 this.nextStep = false;
                 this.stats = 0;
@@ -52,7 +52,6 @@ export class BubbleSort{
         })
     }
 
-
     resetBarStyle(leftBar, rightBar){
         leftBar.style.transform = '';
         leftBar.classList.remove('move-transition');
@@ -76,9 +75,6 @@ export class BubbleSort{
             x : null,
         }
 
-        leftBar.classList.remove('slideup');
-        rightBar.classList.remove('slideup');
-
         leftBar.classList.remove('color-transition');
         rightBar.classList.remove('color-transition');
 
@@ -101,21 +97,33 @@ export class BubbleSort{
         });
     }
 
+    removeSlideUpTransition(){
+        for(let i = 0; i < this.bars.length; i++){
+            this.bars[i].classList.remove('slideup');
+        }
+    }
+
     async sortBars(delay){
+        this.removeSlideUpTransition();
+
         for(let i = 0; i <= this.bars.length - 1; i++){
             for(let j = 0; j < this.bars.length - i - 1; j++){
 
-                // wait for user input event on play pause button
+                // wait for user input event on play pause button. These two if condition made successful for the play-pause and next step.
                 if(this.nextStep === true){
                     this.stats = 1;
                 }
                 if (this.stats === 1){
                     await this.pauser();
                 }
-                await this.pause(delay); 
+
+                await this.pause(delay);
+
                 this.changeBarColor(this.bars[j], 'pink');
                 this.changeBarColor(this.bars[j+1], 'pink');
+
                 await this.pause(delay); 
+
                 const leftBarHeight = parseInt(this.bars[j].clientHeight);
                 const rightBarHeight = parseInt(this.bars[j+1].clientHeight);
                 // To compare value of two blocks
@@ -124,8 +132,8 @@ export class BubbleSort{
                     this.bars = document.querySelectorAll('.bar'); // this line is a big catch.
                     // console.log('refreshed bar ->   ',this.bars)
                 }
-                this.changeBarColor(this.bars[j], 'green');
-                this.changeBarColor(this.bars[j+1], 'green');
+                this.changeBarColor(this.bars[j], 'black');
+                this.changeBarColor(this.bars[j+1], 'black');
             }
             this.changeBarColor(this.bars[this.bars.length - i - 1], 'tomato');
             await this.pause(delay);
