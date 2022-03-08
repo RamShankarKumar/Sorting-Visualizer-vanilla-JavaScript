@@ -2,10 +2,56 @@ export class BubbleSort{
     constructor(barContainer){
         this.bars = document.querySelectorAll('.bar');
         this.barContainer = barContainer;
+
+        //Step button
+        this.stats = 1;
+        this.nextStep = true;
     }
     pause(delay) {
         return new Promise(resolve => setTimeout(resolve, delay))
     }
+
+    pauser() {
+        return new Promise(resolve => {
+            console.log('this inside executor function ->  ',this)
+
+            let playbuttonclick = function () {
+                console.log('this inside playbuttonlcick ->  ', this)
+                document.getElementById("next-step").disabled = true;
+                this.nextStep = false;
+                this.stats = 0;
+                resolve("resolved");
+            }
+            
+            let pausebuttonclick = function () {
+                document.getElementById("next-step").disabled = false;
+                this.nextStep = true;
+                resolve("resolved");
+            }
+            let nextButtonClick = function () {
+                this.stats = 0;
+                this.nextStep = true;
+                resolve("resolved");
+            }
+    
+            let decidePauseAndPlay = function () {
+                if(document.getElementById("play-pause").innerHTML === 'Play'){
+                    document.getElementById("play-pause").innerHTML = 'Pause';
+                    playbuttonclick.apply(this); // instant execution of function with new context
+                }
+                else{
+                    document.getElementById("play-pause").innerHTML = 'Play';
+                    pausebuttonclick.apply(this); // isntant execution of fucntion with new context.
+                }
+            }
+    
+            document.getElementById("next-step").replaceWith(document.getElementById("next-step").cloneNode(true));
+            document.getElementById("play-pause").replaceWith(document.getElementById("play-pause").cloneNode(true));
+            document.getElementById("play-pause").addEventListener("click", decidePauseAndPlay.bind(this)) // new function is returend with new context by using bind method.
+            document.getElementById("next-step").addEventListener("click", nextButtonClick.bind(this))
+        })
+    }
+
 
     resetBarStyle(leftBar, rightBar){
         leftBar.style.transform = '';
@@ -46,7 +92,7 @@ export class BubbleSort{
         rightBar.style.transform = `translate(${leftBarStyle.x}px)`;
         return new Promise((resolve) => {
             setTimeout(() => {
-                // console.log('this insdie settimeout ->> ',this) // 'this' value is undefined but in arrow function, it will search for 'this' context in its lexical scope till it finds one.
+                // console.log('this inside settimeout ->> ',this) // 'this' value is undefined but in arrow function, it will search for 'this' context in its lexical scope till it finds one.
 
                 this.barContainer.insertBefore(rightBar, leftBar);
                 this.resetBarStyle(leftBar, rightBar);
@@ -56,9 +102,17 @@ export class BubbleSort{
     }
 
     async sortBars(delay){
-        await this.pause(1000);
         for(let i = 0; i <= this.bars.length - 1; i++){
             for(let j = 0; j < this.bars.length - i - 1; j++){
+
+                // wait for user input event on play pause button
+                if(this.nextStep === true){
+                    this.stats = 1;
+                }
+                if (this.stats === 1){
+                    await this.pauser();
+                }
+                await this.pause(delay); 
                 this.changeBarColor(this.bars[j], 'pink');
                 this.changeBarColor(this.bars[j+1], 'pink');
                 await this.pause(delay); 
@@ -72,7 +126,6 @@ export class BubbleSort{
                 }
                 this.changeBarColor(this.bars[j], 'green');
                 this.changeBarColor(this.bars[j+1], 'green');
-                await this.pause(delay); 
             }
             this.changeBarColor(this.bars[this.bars.length - i - 1], 'tomato');
             await this.pause(delay);

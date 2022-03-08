@@ -24,6 +24,11 @@ dl,dd {
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+    color: unset;
+}
+
 ul,ol{
     list-style-type: none;
     padding: 0;
@@ -57,17 +62,75 @@ body {
     border: 2px solid red;
 }
 
-.nav-menu ul{
+.main-menu{
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 2rem;
     font-size: 1.2rem;
     border: 2px solid red;
 }
 
-.nav-menu ul li{
+.main-menu > li{
     margin: 10px 30px;
-    cursor: pointer;
 }
+
+/* ------ DROP DOWN --------- */
+
+.sorting{
+    position: relative;
+}
+
+.dropdown-menu{
+    position: absolute;
+    left: -30px;
+    margin-top: 5px;
+    width :150px;
+    height: 200px;
+    border-radius: 7px;
+    background-color: black;
+    display: none;
+    opacity: 0;
+    transition: 0.4s all ease;
+    animation: none;
+}
+
+.dropdown-menu-on{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    animation: fadeIn 0.5s 1 normal forwards;
+}
+
+.sorting li{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.sorting a{
+    transition: 0.5s all ease;
+}
+
+.sorting a:hover{
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 /* =================================================================================================================================== */
 
 

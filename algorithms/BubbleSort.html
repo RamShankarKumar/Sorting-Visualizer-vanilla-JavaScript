@@ -13,11 +13,21 @@
             <p>LOGO</p>
         </div>
         <div class="nav-menu">
-            <ul>
-                <li>Home</li>
-                <li>Sort</li>
-                <li>Compare</li>
-                <li>About</li>
+            <ul class="main-menu">
+                <li><a href="#">Home</a></li>
+                <li class="algo-list">
+                    <div class="sorting">
+                        <button>Algorithms</button>
+                        <ul class="dropdown-menu">
+                            <li class="insertion"><a href="#">Insertion Sort</a></li>
+                            <li class="selectoin"><a href="#">Selection Sort</a></li>
+                            <li class="quick"><a href="#">Quick Sort</a></li>
+                            <li class="merge"><a href="#">Merge Sort</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#">Compare</a></li>
+                <li><a href="#">About</a></li>
             </ul>
         </div>
     </nav>
@@ -36,7 +46,7 @@
                 <label class="speed-range-input-label">
                     Speed:
                 </label>
-                <input type="range" min="0" max="4" value="1" class="slider" id="range">
+                <input type="range" min="0" max="4" value="2" class="slider" id="range">
             </div>
 
             <button class="shuffle">Shuffle</button>
@@ -47,15 +57,14 @@
             <div class="bar-container"></div>
         </div>
         <div class="step-controls">
-            <button class="play-pause step-controls-button">Play</button>
-
-            <button class="Steps step-controls-button">Steps</button>
+            <button id="play-pause" class="step-controls-button">Play</button>
+            <button id="next-step" class="step-controls-button">Steps</button>
         </div>
     </main>
 
     <footer>
         <div>
-            footer
+            Developed By Ram Shankar Kumar
         </div>
     </footer>
     <script type= 'module' src="../scripts/main.js"></script>
