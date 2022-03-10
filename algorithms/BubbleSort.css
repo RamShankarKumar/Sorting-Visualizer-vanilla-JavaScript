@@ -286,7 +286,7 @@ button{
 }
 
 .color-transition{
-    transition: 1s background-color ease;
+    transition: 0.8s background-color ease;
 }
 
 .slideup{

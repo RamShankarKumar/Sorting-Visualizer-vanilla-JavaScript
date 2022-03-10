@@ -105,7 +105,7 @@ export class BubbleSort{
 
     async sortBars(delay){
         this.removeSlideUpTransition();
-
+        // console.log(delay);
         for(let i = 0; i <= this.bars.length - 1; i++){
             for(let j = 0; j < this.bars.length - i - 1; j++){
 
@@ -116,12 +116,10 @@ export class BubbleSort{
                 if (this.stats === 1){
                     await this.pauser();
                 }
-
-                await this.pause(delay);
-
+                await this.pause(delay); 
+                // await this.pause(delay);
                 this.changeBarColor(this.bars[j], 'pink');
                 this.changeBarColor(this.bars[j+1], 'pink');
-
                 await this.pause(delay); 
 
                 const leftBarHeight = parseInt(this.bars[j].clientHeight);
@@ -132,8 +130,11 @@ export class BubbleSort{
                     this.bars = document.querySelectorAll('.bar'); // this line is a big catch.
                     // console.log('refreshed bar ->   ',this.bars)
                 }
+
+                // await this.pause(delay);
                 this.changeBarColor(this.bars[j], 'black');
                 this.changeBarColor(this.bars[j+1], 'black');
+                await this.pause(delay);
             }
             this.changeBarColor(this.bars[this.bars.length - i - 1], 'tomato');
             await this.pause(delay);
