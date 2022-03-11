@@ -52,8 +52,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: var(--theme-primary-color); */
-    /* color: var(--menu-color); */
     border: 2px solid green;
 }
 
@@ -91,7 +89,7 @@ body {
     background-color: black;
     display: none;
     opacity: 0;
-    transition: 0.4s all ease;
+    transition: 0.2s all ease;
     animation: none;
 }
 
@@ -139,10 +137,23 @@ body {
 /* -------- RANGE SLIDER ----------*/
 .config-menu{
     display: flex;
+    justify-content:space-between;
+    align-items: center;
+    border: 2px solid red;
+}
+
+.config-menu-button{
+    display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0 2rem;
-    border: 2px solid red;
+}
+
+.config-slider{
+    flex-basis: 70%;
+}
+
+.config-button{
+    flex-basis: 30%;
 }
 
 .bar-range-input, .speed-range-input{
@@ -252,8 +263,9 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 0rem;
     border: 2px solid red;
+    margin-top: 1rem;
 }
 
 .bubble-container{
@@ -281,22 +293,13 @@ button{
     height: 0;
 }
 
-.move-transition{
-    transition: 0.7s transform ease;
-}
-
-.color-transition{
-    transition: 0.8s background-color ease;
-}
-
 .slideup{
-    /* transition: 1s height cubic-bezier(.54,.35,.06,1.56); */
     transition: 1s height cubic-bezier(.26,.27,.02,1.6);
-}
+} 
 
 .step-controls{
     border: 2px solid red;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 /* ==========================================================================================================================*/
 
@@ -322,3 +325,80 @@ footer{
     margin-top: 2rem;
 }
 /* =================================================================================================================================== */
+
+
+
+
+
+@media screen and (max-width: 750px) {
+    /* NavBar */
+    .main-menu{
+        font-size: 1rem;
+    }
+
+    .main-menu > li{
+        margin: 10px 15px;
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu{
+        width: 130px;
+        height: 170px;
+    }
+
+
+
+    /* ---------------------------config menu---------------------------------- */
+    .config-menu-button{
+        flex-direction: column;
+        flex-basis: 50%;
+    }
+    .config-slider div{
+        padding: 15px;
+    }
+    .config-button button{
+        padding: 15px;
+    }
+    .config-slider .bar-range-input{
+        padding-left: 40px;
+    }
+
+    /* Footer */
+    footer{
+        margin-top: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 550px){
+        /* Navbar */
+        .nav-menu{
+            display: none;
+        }
+}
+
+@media screen and (max-width: 450px){
+
+    /* config menu */
+    .config-menu{
+        flex-direction :column;
+    }
+    .config-menu-button{
+        width: 100%;
+    }
+    .config-slider .bar-range-input{
+        width: 100%;
+        padding-left: 15px;
+    }
+    .speed-range-input{
+        width: 100%;
+    }
+    .config-button{
+        flex-direction: row;
+    }
+    .bar-range-input input{
+        width: 90%;
+    }
+    .speed-range-input input{
+        width:75%;
+    }
+}

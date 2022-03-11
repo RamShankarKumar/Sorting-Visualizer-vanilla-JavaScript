@@ -74,8 +74,8 @@ import {Bar} from './Bar.js';
         visualize.createBars(bars, randomBarHeight, barContainer);
         const bubbleSort = new BubbleSort(barContainer);
 
-        // Here we are putting a promise return because with the help of long debugging session, I found that browser is keep waiting for the repaint of the created bar and as soon as it gets the promise wait, in the mean time it paints the browser. Our first promise is being called in BubbleSort.js file. So to paint the created bar as soon as possible, we put the promise return here only.
-        // One more reason to put this here as, as soons as we get the bars painted, we can remove the slideup transition from all bars at once in the BubbleSort.js file. This will help us in making smooth color-transition as there will only be color transition at that point of time.
+        // Here we are putting a promise return because with the help of long debugging session, I found that browser keeps waiting for the repaint of the created bar and as soon as it gets the promise wait, in the mean time it paints the browser. Our first promise is being called in BubbleSort.js file. So to paint the created bar as soon as possible, we put the promise return here only.
+        // One more reason to put this here is, as soons as we get the bars painted, we can remove the slideup transition from all bars at once in the BubbleSort.js file. This will help us in making smooth color-transition as there will only be color transition at that point of time.
         await bubbleSort.pause(1000);
 
         bubbleSort.sortBars(visualizerSpeed);
