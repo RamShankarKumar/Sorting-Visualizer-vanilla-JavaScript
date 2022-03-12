@@ -126,8 +126,8 @@ export class BubbleSort{
                 }
 
                 // await this.pause(delay); 
-                this.changeBarColor(this.bars[j], 'pink', delay);
-                this.changeBarColor(this.bars[j+1], 'pink', delay);
+                this.changeBarColor(this.bars[j], '#F2C76E', delay);
+                this.changeBarColor(this.bars[j+1], '#F2C76E', delay);
                 await this.pause(delay/2); 
 
                 const leftBarHeight = parseInt(this.bars[j].clientHeight);
@@ -140,8 +140,8 @@ export class BubbleSort{
                 }
 
                 // await this.pause(delay);
-                this.changeBarColor(this.bars[j], 'black', delay);
-                this.changeBarColor(this.bars[j+1], 'black', delay);
+                this.changeBarColor(this.bars[j], '#7A77B9', delay);
+                this.changeBarColor(this.bars[j+1], '#7A77B9', delay);
                 await this.pause(delay/2);
             }
             if(this.bars.length == 1){
@@ -154,7 +154,7 @@ export class BubbleSort{
                 }
 
             }
-            this.changeBarColor(this.bars[this.bars.length - i - 1], 'tomato');
+            this.changeBarColor(this.bars[this.bars.length - i - 1], '#EA7186');
             await this.pause(delay/2);
         }
     }
