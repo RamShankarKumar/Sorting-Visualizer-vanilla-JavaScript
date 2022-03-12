@@ -47,17 +47,91 @@ body {
 /* =================================================================================================================================== */
 
 
+
+
+/*  --------------------------------------- LOGO -----------------------------------------------*/
+
+nav{
+    padding: 5px;
+}
+.logo{
+    margin-left: 2rem;
+    border: 2px solid red;
+    font-size: 1rem;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.logo p:nth-child(2){
+    letter-spacing: 7px;
+}
+
+.logo p:nth-child(1){
+    letter-spacing: 5px;
+}
+
+.logo-art-container{
+    display: flex;
+    align-items: flex-end;
+}
+
+.logo-art{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.logo-art .logo-line{
+    width: 3px;
+    background-color: black;
+    margin: 3px;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.logo-art .logo-line1{
+    height: 25px;
+}
+
+.logo-art .logo-line2{
+    height: 18px;
+}
+
+.logo-art .logo-line3{
+    height: 23px;
+}
+
+.logo-art .logo-line4{
+    height: 25px;
+}
+
+.logo-art .logo-line5{
+    height: 10px;
+}
+
+
+.logo:hover .logo-line1{
+    height: 25px;
+}
+.logo:hover .logo-line5{
+    height: 5px;
+}
+.logo:hover .logo-line4{
+    height: 10px;
+}
+.logo:hover .logo-line2{
+    height: 20px;
+}
+.logo:hover .logo-line3{
+    height: 15px;
+}
+
 /* --------------------------------------- NAVBAR -------------------------------------------- */
 .navigation-bar{
     display: flex;
     justify-content: space-between;
     align-items: center;
     border: 2px solid green;
-}
-
-.logo{
-    margin-left: 2rem;
-    border: 2px solid red;
 }
 
 .main-menu{
@@ -72,6 +146,162 @@ body {
 .main-menu > li{
     margin: 10px 30px;
 }
+
+.hamburger{
+    width: 30px;
+    height: 30px;
+    border: 2px solid red;
+    margin-right: 1rem;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    display: none;
+}
+
+.hamburger-line{
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.small-screen-nav-menu{
+    position: fixed;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: -200px;
+    background-color: black;
+    color: white;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    transition: right 0.5s ease;
+}
+
+.small-screen-nav-menu-active{
+    right: 0;
+
+}
+
+.cross-button{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.cross-line{
+    width: 5px;
+    height: 22px;
+    background-color: white;
+    border-radius: 7px;
+    margin: 3px;
+    cursor: pointer;
+}
+
+.cross-line2{
+    margin-right: 20px;
+}
+
+.small-screen-nav-menu-active .cross-line1{
+    animation-name: moveCrossLine1;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards
+}
+
+.small-screen-nav-menu-active .cross-line2{
+    animation-name: moveCrossLine2;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards
+}
+
+.small-screen-main-menu{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5rem;
+}
+
+.small-screen-main-menu .algo-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1rem;
+}
+
+.small-screen-main-menu .algo-list p{
+    font-size: 1.5rem;
+}
+
+.small-screen-dropdown-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+}
+
+.nav-link{
+    position: relative;
+    padding: 3px 0;
+}
+
+.nav-link::before,
+.nav-link::after{
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: chocolate;
+    position: absolute;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s
+}
+
+.nav-link::after{
+    bottom: 0;
+}
+
+.nav-link::before{
+    top: 0;
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after{
+    transform: scaleX(1);
+}
+
+
+
+@keyframes moveCrossLine1{
+    0%{
+        transform: rotate(0) translateX(0);
+    }
+    100%{
+        transform: rotate(40deg) translateX(7px);
+    }
+}
+
+@keyframes moveCrossLine2{
+    0%{
+        transform: rotate(0) translateX(0);
+    }
+    100%{
+        transform: rotate(-40deg) translateX(-7px);
+    }
+}
+
+
 
 /* ------ DROP DOWN --------- */
 
@@ -149,11 +379,11 @@ body {
 }
 
 .config-slider{
-    flex-basis: 70%;
+    flex-basis: 60%;
 }
 
 .config-button{
-    flex-basis: 30%;
+    flex-basis: 40%;
 }
 
 .bar-range-input, .speed-range-input{
@@ -336,6 +566,30 @@ footer{
         font-size: 1rem;
     }
 
+    .logo{
+        font-size: 0.9rem;
+    }
+
+    .logo-art .logo-line1{
+        height: 25px;
+    }
+    
+    .logo-art .logo-line2{
+        height: 18px;
+    }
+    
+    .logo-art .logo-line3{
+        height: 23px;
+    }
+    
+    .logo-art .logo-line4{
+        height: 25px;
+    }
+    
+    .logo-art .logo-line5{
+        height: 10px;
+    }
+
     .main-menu > li{
         margin: 10px 15px;
     }
@@ -362,6 +616,13 @@ footer{
     .config-slider .bar-range-input{
         padding-left: 40px;
     }
+    .config-slider{
+        flex-basis: 60%;
+    }
+    
+    .config-button{
+        flex-basis: 40%;
+    }
 
     /* Footer */
     footer{
@@ -369,10 +630,13 @@ footer{
     }
 }
 
-@media screen and (max-width: 550px){
+@media screen and (max-width: 600px){
         /* Navbar */
         .nav-menu{
             display: none;
+        }
+        .hamburger{
+            display: flex;
         }
 }
 
@@ -400,5 +664,37 @@ footer{
     }
     .speed-range-input input{
         width:75%;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .logo{
+        font-size: 0.7rem;
+    }
+
+    .logo-art .logo-line1{
+        height: 25px;
+    }
+    
+    .logo-art .logo-line2{
+        height: 15px;
+    }
+    
+    .logo-art .logo-line3{
+        height: 20px;
+    }
+    
+    .logo-art .logo-line4{
+        height: 25px;
+    }
+    
+    .logo-art .logo-line5{
+        height: 5px;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .small-screen-nav-menu{
+        display: none;
     }
 }

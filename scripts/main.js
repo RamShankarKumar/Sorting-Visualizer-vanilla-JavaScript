@@ -3,6 +3,12 @@ import {BubbleSort} from '../algorithms/BubbleSort.js';
 import {Bar} from './Bar.js';
 
 (function(){
+    //Nav Menu
+    const hamburger = document.querySelector(".hamburger");
+    const smallScreenNavMenu = document.querySelector(".small-screen-nav-menu");
+    const crossButton = document.querySelector(".cross-button");
+
+
 
     //Range slider
     const speedRangeInput = document.querySelector(".speed-range-input input");
@@ -19,6 +25,16 @@ import {Bar} from './Bar.js';
     const dropDownButton = document.querySelector(".algo-list");
     const dropDownMenu = document.querySelector(".dropdown-menu");
 
+
+
+
+    //Nav Menu
+    hamburger.addEventListener("click", () => {
+        smallScreenNavMenu.classList.add("small-screen-nav-menu-active");
+    })
+    crossButton.addEventListener("click", () => {
+        smallScreenNavMenu.classList.remove("small-screen-nav-menu-active");
+    })
 
 
 
