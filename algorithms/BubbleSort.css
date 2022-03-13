@@ -192,6 +192,7 @@ nav{
     width: 30px;
     height: 30px;
     /* border: 2px solid red; */
+    border-radius: 7px;
     background-color: var(--primary-hover-background);
     margin-right: 1rem;
     padding: 5px;
