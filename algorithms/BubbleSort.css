@@ -54,11 +54,15 @@ body {
     background-color: var(--body-background-color);
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
+    display: flex;
+    flex-direction: column;
 }
 /* =================================================================================================================================== */
 
-
-
+/* NAVBAR MAIN FOOTER */
+nav, main{
+    flex-grow: 1;
+}
 
 /*  --------------------------------------- LOGO -----------------------------------------------*/
 
