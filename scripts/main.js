@@ -1,5 +1,5 @@
 "use strict";
-import {BubbleSort} from '../algorithms/BubbleSort.js';
+import {BubbleSort} from '../algorithms/BubbleSort/BubbleSort.js';
 import {Bar} from './Bar.js';
 
 (function(){
@@ -80,6 +80,7 @@ import {Bar} from './Bar.js';
 
     const generateBarOnInput = async () => {
         document.getElementById('play-pause').classList.add('ispause');
+        document.getElementById('play-pause').classList.remove('isplay');
         document.getElementById('play-pause').innerHTML = "<i class='fa fa-play-circle fa-3x'></i>"
         // barCount = parseInt(barInput.value);
         barCount = parseInt(barRangeInput.value)
