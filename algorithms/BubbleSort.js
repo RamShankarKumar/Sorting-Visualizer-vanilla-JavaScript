@@ -33,24 +33,33 @@ export class BubbleSort{
                 resolve("resolved");
             }
             let nextButtonClick = function () {
+                document.getElementById("play-pause").classList.remove('isplay');
+                document.getElementById('play-pause').classList.add("ispause");
+                document.getElementById('play-pause').innerHTML = "<i class='fa fa-play-circle fa-3x'></i>"
                 this.stats = 0;
                 this.nextStep = true;
                 resolve("resolved");
             }
     
             let decidePauseAndPlay = function () {
-                if(document.getElementById("play-pause").innerHTML === 'Play'){
-                    document.getElementById("play-pause").innerHTML = 'Pause';
+                if(document.getElementById("play-pause").classList.contains('ispause')){
+                    document.getElementById("play-pause").classList.remove('ispause');
+                    document.getElementById('play-pause').classList.add("isplay");
+                    document.getElementById('play-pause').innerHTML = "<i class='fa fa-pause-circle fa-3x'></i>"
                     playbuttonclick.apply(this); // instant execution of function with new context
                 }
                 else{
-                    document.getElementById("play-pause").innerHTML = 'Play';
+                    document.getElementById("play-pause").classList.remove('isplay');
+                    document.getElementById('play-pause').classList.add("ispause");
+                    document.getElementById('play-pause').innerHTML = "<i class='fa fa-play-circle fa-3x'></i>"
                     pausebuttonclick.apply(this); // instant execution of fucntion with new context.
                 }
             }
     
+            // this cloning is beging done to remove all event listeners from that particular element.
             document.getElementById("next-step").replaceWith(document.getElementById("next-step").cloneNode(true));
             document.getElementById("play-pause").replaceWith(document.getElementById("play-pause").cloneNode(true));
+
             document.getElementById("play-pause").addEventListener("click", decidePauseAndPlay.bind(this)) // new function is returned with new context by using bind method.
             document.getElementById("next-step").addEventListener("click", nextButtonClick.bind(this))
         })
@@ -121,6 +130,10 @@ export class BubbleSort{
                     this.stats = 1;
                 }
                 if (this.stats === 1){
+                    if(j !== 0 && i >= 0){
+                        this.changeBarColor(this.bars[j], '#F2C76E', delay);
+                        this.changeBarColor(this.bars[j+1], '#F2C76E', delay);
+                    }
                     await this.pauser();
                     await this.pause(300); 
                 }

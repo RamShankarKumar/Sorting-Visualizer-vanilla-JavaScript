@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&family=Nunito:wght@200;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="BubbleSort.css">
 </head>
 <body>
@@ -102,14 +103,26 @@
             <div class="bar-container"></div>
         </div>
         <div class="step-controls">
-            <button id="play-pause" class="step-controls-button">Play</button>
-            <button id="next-step" class="step-controls-button">Steps</button>
+            <div id="play-pause" class="step-controls-button ispause">
+                <i class='fa fa-play-circle fa-3x'></i>
+            </div>
+            <div id="next-step" class="step-controls-button">
+                <i class='fa fa-angle-double-right fa-3x'></i>
+            </div>
         </div>
     </main>
 
     <footer>
         <div class="footer-text">
-            Developed By &nbsp<a href="#">Ram Shankar Kumar</a>
+            <p>Developed By &nbsp </p><span><a href="https://www.linkedin.com/in/ram-shankar-kumar-7ab3697a/">Ram Shankar Kumar</a></span>
+        </div>
+        <div class="footer-icon">
+            <div class="linkedin">
+                <i href="https://www.linkedin.com/in/ram-shankar-kumar-7ab3697a/" class='fa fa-linkedin-square fa-2x'></i>
+            </div>
+            <div class="github">
+                <i href="https://github.com/RamShankarKumar/Sorting-Visualizer-vanilla-JavaScript" class='fa fa-github-square fa-2x'></i>
+            </div>
         </div>
     </footer>
     <script type= 'module' src="../scripts/main.js"></script>

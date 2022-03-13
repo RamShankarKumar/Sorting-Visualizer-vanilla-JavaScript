@@ -79,7 +79,8 @@ import {Bar} from './Bar.js';
     }
 
     const generateBarOnInput = async () => {
-        document.getElementById('play-pause').innerHTML = 'Play';
+        document.getElementById('play-pause').classList.add('ispause');
+        document.getElementById('play-pause').innerHTML = "<i class='fa fa-play-circle fa-3x'></i>"
         // barCount = parseInt(barInput.value);
         barCount = parseInt(barRangeInput.value)
         // console.log('Bar Count        -> ', barCount)
