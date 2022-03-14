@@ -170,5 +170,8 @@ export class BubbleSort{
             this.changeBarColor(this.bars[this.bars.length - i - 1], '#EA7186');
             await this.pause(delay/2);
         }
+        document.getElementById("play-pause").classList.remove('isplay');
+        document.getElementById('play-pause').classList.add("ispause");
+        document.getElementById('play-pause').innerHTML = "<i class='fa fa-play-circle fa-3x'></i>"
     }
 }
