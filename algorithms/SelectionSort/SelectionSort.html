@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Sort Visualizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gelasio:wght@400;500;600;700&family=Nunito:wght@200;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="SelectionSort.css">
+</head>
+<body>
+    <nav class="navigation-bar">
+        <div class="logo">
+            <div class="logo-art-container">
+                <p>SORTING</p>
+                <div class="logo-art">
+                    <div class="logo-line logo-line1"></div>
+                    <div class="logo-line logo-line2"></div>
+                    <div class="logo-line logo-line3"></div>
+                    <div class="logo-line logo-line4"></div>
+                    <div class="logo-line logo-line5"></div>
+                </div>
+            </div>
+            <p>VISUALIZER</p>
+        </div>
+        <div class="nav-menu">
+            <ul class="main-menu">
+                <li><a class="nav-link" href="#">Home</a></li>
+                <li class="algo-list">
+                    <div class="sorting">
+                        <button>Algorithms</button>
+                        <ul class="dropdown-menu">
+                            <li class="bubble"><a class="nav-link" href="#">Bubble Sort</a></li>
+                            <li class="insertion"><a class="nav-link" href="#">Insertion Sort</a></li>
+                            <li class="selectoin"><a class="nav-link" href="#">Selection Sort</a></li>
+                            <li class="quick"><a class="nav-link" href="#">Quick Sort</a></li>
+                            <li class="merge"><a class="nav-link" href="#">Merge Sort</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="#">Compare</a></li>
+                <li><a class="nav-link" href="#">About</a></li>
+            </ul>
+        </div>
+        <div class="hamburger">
+            <div class="hamburger-line line1"></div>
+            <div class="hamburger-line line2"></div>
+            <div class="hamburger-line line3"></div>
+        </div>
+        <div class="small-screen-nav-menu">
+            <div class="cross-button">
+                <div class="cross-line cross-line1"></div>
+                <div class="cross-line cross-line2"></div>
+            </div>
+            <ul class="small-screen-main-menu">
+                <li><a class="nav-link" href="#">Home</a></li>
+                <li class="algo-list">
+                    <p>Sorting</p>
+                    <div class="small-screen-sorting">
+                        <ul class="small-screen-dropdown-menu">
+                            <li class="bubble"><a class="nav-link" href="#">Bubble Sort</a></li>
+                            <li class="insertion"><a class="nav-link" href="#">Insertion Sort</a></li>
+                            <li class="selectoin"><a class="nav-link" href="#">Selection Sort</a></li>
+                            <li class="quick"><a class="nav-link" href="#">Quick Sort</a></li>
+                            <li class="merge"><a class="nav-link" href="#">Merge Sort</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="nav-link" href="#">Compare</a></li>
+                <li><a class="nav-link" href="#">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="bubble-container">
+        <div class="config-menu">
+            <div class="config-slider config-menu-button">
+                <div class="bar-range-input">
+                    <label class="bar-range-input-label">
+                        Bar:
+                    </label>
+                    <input type="range" min="1" max="100" value="30" step='1' class="slider" id="range">
+                    <div class="bar-range-value"></div>
+                </div>
+    
+                <div class="speed-range-input">
+                    <label class="speed-range-input-label">
+                        Speed:
+                    </label>
+                    <input type="range" min="0" max="4" value="2" class="slider" id="range">
+                </div>
+            </div>
+
+            <div class="config-button config-menu-button">
+                <button class="shuffle">Shuffle</button>
+                <button class="reset">Reset</button>
+            </div>
+        </div>
+        <div class="visualizer-container">
+            <div class="bar-container"></div>
+        </div>
+        <div class="step-controls">
+            <div id="play-pause" class="step-controls-button ispause">
+                <i class='fa fa-play-circle fa-3x'></i>
+            </div>
+            <div id="next-step" class="step-controls-button">
+                <i class='fa fa-angle-double-right fa-3x'></i>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-text">
+            <p>Developed By &nbsp </p><span><a href="https://www.linkedin.com/in/ram-shankar-kumar-7ab3697a/">Ram Shankar Kumar</a></span>
+        </div>
+        <div class="footer-icon">
+            <div class="linkedin">
+                <a href="https://www.linkedin.com/in/ram-shankar-kumar-7ab3697a/" class='fa fa-linkedin-square fa-2x'></a>
+            </div>
+            <div class="github">
+                <a href="https://github.com/RamShankarKumar/Sorting-Visualizer-vanilla-JavaScript" class='fa fa-github-square fa-2x'></a>
+            </div>
+        </div>
+    </footer>
+    <script type= 'module' src="../../scripts/SelectionMain.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-export class InsertionSort{
+export class SelectionSort{
     constructor(barContainer){
         this.bars = document.querySelectorAll('.bar');
         this.barContainer = barContainer;
@@ -79,6 +79,13 @@ export class InsertionSort{
         bar.style.backgroundColor = color;
         // we could have removed the 'color-transition' class at this point also but this is so fast that transition does not appear to our eyes.
     }
+
+    changeBarHeight(bar, height, delay){
+        bar.style.cssText += `transition: ${delay/1000}s height ease;`
+        bar.style.height = `${height}px`;
+    }
+
+
     async swapAnimation(leftBar, rightBar, delay){
         // finding left bottom corner axis.
         let leftBarStyle = {
@@ -130,15 +137,20 @@ export class InsertionSort{
                 await this.pause(300); 
             }
 
-            this.changeBarColor(this.bars[0], '#01b4bc');
+            this.changeBarColor(this.bars[0], '#01b4bc', delay);
             await this.pause(delay/2);
-            this.changeBarColor(this.bars[0], '#EA7186');
+            this.changeBarColor(this.bars[0], '#EA7186', delay);
             await this.pause(delay/2);
         }
         else{
-            for(let i = 1; i < this.bars.length; i++){
-                const tempBar = this.bars[i];
-                const tempBarHeight = parseInt(this.bars[i].clientHeight);
+            for(let i = 0; i < (this.bars.length)-1; i++){
+                let BarToCompare = this.bars[i];
+                let BarToCompareHeight = parseInt(this.bars[i].clientHeight);
+
+                let tempBarToCompareHeight = parseInt(this.bars[i].clientHeight);
+
+                let barToCompareWithIndex = i;
+                let isMinimum = false;
                 // wait for user input event on play pause button. These two if condition made successful for the play-pause and next step.
                 if(this.nextStep === true){
                     this.stats = 1;
@@ -147,13 +159,14 @@ export class InsertionSort{
                     await this.pauser();
                     await this.pause(300); 
                 }
-    
-                this.changeBarColor(this.bars[i], '#01b4bc', delay);
+
+                this.changeBarColor(this.bars[i], '#3aafa9', delay);
                 await this.pause(delay/2);
+
+                let j = 0;
                 
-                // let isSwapped = false;
-                let j = i;
-                while(j > 0){
+                for(j =  i+1; j < this.bars.length; j++)
+                {
                     if(this.nextStep === true){
                         this.stats = 1;
                     }
@@ -161,29 +174,48 @@ export class InsertionSort{
                         await this.pauser();
                         await this.pause(300); 
                     }
-
-
-                    this.changeBarColor(this.bars[j-1], '#F2C76E', delay);
+                    this.changeBarColor(this.bars[j], '#F2C76E', delay);
                     await this.pause(delay/2);
-
-                    if(parseInt(this.bars[j-1].clientHeight) > tempBarHeight){
-                        // isSwapped = true;
-                        this.changeBarColor(this.bars[j-1], '#F2C76E', delay);
-                        this.pause(delay/2)
-                        await this.swapAnimation(this.bars[j-1], this.bars[j], delay);
-                        this.bars = document.querySelectorAll('.bar'); // this line is a big catch.
+                    if(parseInt(this.bars[j].clientHeight) < tempBarToCompareHeight){
+                        isMinimum = true;
+                        tempBarToCompareHeight = parseInt(this.bars[j].clientHeight);
+                        BarToCompare = this.bars[j];
+                        barToCompareWithIndex = j;
                     }
-                    else{
-                        break;
-                    }
-                    j--
+                    this.changeBarColor(this.bars[j], '#7A77B9', delay);
+                }
+                console.log('isMinimum -> ',isMinimum);
+                this.changeBarColor(BarToCompare, '#25274D', delay);
+                await this.pause(delay/2);
+                if(isMinimum){
+                    this.changeBarHeight(this.bars[i], 0, delay);
+                    await this.pause(delay);
+                    this.changeBarHeight(BarToCompare, 0, delay);
+                    await this.pause(delay);
                 }
 
-                for(let k = 0; k <= i; k++){
-                    this.changeBarColor(this.bars[k], '#EA7186');
-                    await this.pause(15);
-                }
+                // Once we have copied the node element inside tempBarLeft and tempBarRight, we need to use those two variable further for node swapping.
+
+                let tempBarLeft = this.bars[i];
+                // Here we need to clone the node because, replaceWith method of DOM, removes the node if the replacing node already exists in the DOM tree. suppose Node A needs to be replaced with Node B. Node B is already present in the DOM tree. Then at this point Node B will get removed from its places and replaced with Ndoe A. But in our use case we do not want to loose the Node B in the DOM tree.
+                let tempBarRight = BarToCompare.cloneNode();
+
+                this.bars[i].replaceWith(tempBarRight);
+                this.bars[barToCompareWithIndex].replaceWith(tempBarLeft);
+                await this.pause(delay);
+
+                this.changeBarHeight(tempBarRight, tempBarToCompareHeight, delay);
+                await this.pause(delay);
+                this.changeBarHeight(tempBarLeft, BarToCompareHeight, delay);
+                await this.pause(delay);
+
+                this.changeBarColor(tempBarLeft, '#7A77B9', delay);
+                this.changeBarColor(tempBarRight, '#EA7186', delay);
+
+                this.bars = document.querySelectorAll('.bar');
             }
+            this.bars = document.querySelectorAll('.bar');
+            this.changeBarColor(this.bars[(this.bars.length)-1], '#EA7186', delay);
         }
         
         document.getElementById("play-pause").classList.remove('isplay');
